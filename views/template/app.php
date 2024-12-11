@@ -1,12 +1,5 @@
 <?php
-require 'dados.php';
-$id = $_REQUEST['id'];
-$livro = array_filter($livros, function ($l) use ($id) {
-    return $l['id'] == $id;
-});
-echo "<pre>";
-var_dump($livro);
-echo "</pre>";
+require 'dados.php'
 ?>
 
 <!DOCTYPE html>
@@ -34,9 +27,7 @@ echo "</pre>";
     </header>
 
     <main class="mx-auto max-w-screen-lg space-y-6">
-
-        ID do Livro <?php echo $id ?>
-
+        <?php require "views/{$view}.view.php"; ?>
     </main>
 
 </body>
