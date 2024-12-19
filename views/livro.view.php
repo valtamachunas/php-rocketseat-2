@@ -3,7 +3,7 @@
     <div class="flex">
         <div class="w-1/3">Imagem</div>
         <div class="space-y-1">
-            <a href="/livro.php?id=<?php echo $livro['id'] ?>"
+            <a href="/livro?id=<?php echo $livro['id'] ?>"
                 class="font-semibold hover:underline"><?php echo $livro['titulo'] ?></a>
             <div class="text-xs italic"><?php echo $livro['autor'] ?></div>
             <div class="text-xs italic">⭐⭐⭐</div>

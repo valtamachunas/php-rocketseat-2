@@ -18,7 +18,7 @@ require 'dados.php'
             <div class="font-bold text-xl tracking-wide"> 🕮 Gerenciador de Leitura</div>
             <ul class="flex space-x-4">
                 <li><a href="/" style="color: #f5ecb7;">Explorar</a></li>
-                <li><a href="/meus-livros.php" class="hover:underline">Meus livros</a></li>
+                <li><a href="/meus-livros" class="hover:underline">Meus livros</a></li>
             </ul>
             <ul>
                 <li><a href="/login" class="hover:underline">Fazer login</a></li>
