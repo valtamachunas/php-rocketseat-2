@@ -1,5 +1,12 @@
 <?php
-require 'dados.php';
+
+
+// $db = new DB();
+// $livros = $db->livros();
+//em vez de usar igual está acima, vamos usar de maneira mais limpa:
+$livros = (new DB)->livros($_REQUEST['pesquisar']);
+
+
 
 
 view('index', [
