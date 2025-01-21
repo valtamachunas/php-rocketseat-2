@@ -4,30 +4,21 @@
 class DB
 {
     private $db;
-    public function __construct()
+    public function __construct($config)
     {
-        $this->db = new PDO('sqlite:database.sqlite');
+
+        $connectionString = $config['driver'] . ':' . $config['database'];
+        $this->db = new PDO($connectionString);
     }
-    //retorna todos os livros do banco de dados
-    //@return array[Livro]
-    public function livros($pesquisa = null)
+    public function query($query, $class = null, $params = [])
     {
-        $prepare = $this->db->prepare("select * from livros where usuario_id = 1 and titulo like :pesquisa");
-        $prepare->bindValue(':pesquisa', "%$pesquisa%");
-        $prepare->execute();
-
-        $items = $prepare->fetchAll();
-
-        return array_map(fn($item) => Livro::make($item), $items);
-    }
-    public function livro($id)
-    {
-
-        $sql = "select * from livros";
-        $sql .= " where id = " . $id;
-        $query = $this->db->query($sql);
-        $items = $query->fetchAll();
-
-        return array_map(fn($item) => Livro::make($item), $items)[0];
+        $prepare = $this->db->prepare($query);
+        if ($class) {
+            $prepare->setFetchMode(PDO::FETCH_CLASS, $class);
+        }
+        $prepare->execute($params);
+        return $prepare;
     }
 }
+
+$database = new DB($config['database']);

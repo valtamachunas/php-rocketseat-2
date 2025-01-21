@@ -4,10 +4,13 @@
 // $db = new DB();
 // $livros = $db->livros();
 //em vez de usar igual está acima, vamos usar de maneira mais limpa:
-$livros = (new DB)->livros($_REQUEST['pesquisar']);
+$pesquisar = $_REQUEST['pesquisar'] ?? '';
 
-
-
+$livros = $database->query(
+    query: "select * from livros where titulo like :filtro",
+    class: Livro::class,
+    params: ['filtro' => "%$pesquisar%"]
+)->fetchAll();
 
 view('index', [
     'livros' => $livros
